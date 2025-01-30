@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhikzx</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Efek Fade-in */
+        body {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            background-image: url('https://files.catbox.moe/tomnfh.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Tombol Musik di Pojok Kiri Atas */
+        .music-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            background-color: red;
+            color: white;
+        }
+
+        /* Header */
+        .header-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0px 0px 10px gray;
+            content: url('https://files.catbox.moe/9fbaof.jpg');
+            animation: rgbBorder 3s infinite alternate;
+        }
+
+        @keyframes rgbBorder {
+            0% { border-color: red; }
+            25% { border-color: green; }
+            50% { border-color: blue; }
+            75% { border-color: yellow; }
+            100% { border-color: purple; }
+        }
+
+        .header-text {
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Text Jepang */
+        .japanese-text {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeInOut 6s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 50%, 100% { opacity: 0; }
+            25%, 75% { opacity: 1; }
+        }
+
+        /* Keterangan Minat */
+        .interest-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .interest {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .interest:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Tombol */
+        .button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .website-footer {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Musik -->
+    <button id="music-btn" class="music-button" onclick="toggleMusic()">Music</button>
+
+    <!-- Musik -->
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/twbl7m.webm" type="audio/webm">
+    </audio>
+
+    <!-- Header -->
+    <div class="header-section">
+        <img src="https://files.catbox.moe/9fbaof.jpg" class="profile-img" alt="Profile">
+        <h1 class="header-text">Dhikzx</h1>
+
+        <!-- Text Jepang -->
+        <div class="japanese-text">こんにちは、私の名前はDhikzxです</div>
+
+        <!-- Keterangan Minat -->
+        <div class="interest-section">
+            <span class="interest"><i class="fas fa-film"></i> Anime</span>
+            <span class="interest"><i class="fas fa-book"></i> Manga</span>
+            <span class="interest"><i class="fas fa-code"></i> Coding</span>
+            <span class="interest"><i class="fas fa-gamepad"></i> Gaming</span>
+            <span class="interest"><i class="fas fa-music"></i> Music</span>
+            <span class="interest"><i class="fas fa-edit"></i> Editing</span>
+        </div>
+    </div>
+
+    <!-- Tombol Pertama -->
+    <div id="initialButtons">
+        <button class="button" onclick="showProducts()">Produk</button>
+        <button class="button" onclick="window.location.href='https://wa.me/6285810287828'">Contact Owner</button>
+        <button class="button" onclick="window.location.href='https://chat.whatsapp.com/DyFk35cEMXGGBdCTvOqcih'">Group Bot</button>
+    </div>
+
+    <!-- Tombol Produk (Diperbaiki agar muncul) -->
+    <div id="produkButtons" style="display: none;">
+        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Sewa+Bot+Bang_'">Buy Sewa Bot</button>
+        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Panel+Bang_'">Buy Panel Bot</button>
+        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Jasa+Rename+Bang_'">Buy Jasa Rename</button>
+        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Jasa+Recode+Bang_'">Buy Jasa Recode</button>
+        <button class="button" onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="website-footer">
+        © 2025 - Dhikzx Not Useful
+    </footer>
+
+    <script>
+        function toggleMusic() {
+            var music = document.getElementById("bg-music");
+            var musicBtn = document.getElementById("music-btn");
+
+            if (music.paused) {
+                music.play();
+                musicBtn.style.backgroundColor = "green";
+            } else {
+                music.pause();
+                musicBtn.style.backgroundColor = "red";
+            }
+        }
+
+        function showProducts() {
+            document.getElementById('initialButtons').style.display = 'none';
+            document.getElementById('produkButtons').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('produkButtons').style.display = 'none';
+            document.getElementById('initialButtons').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
