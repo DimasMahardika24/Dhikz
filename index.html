@@ -1,216 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhikzx</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-
-    <style>
-        /* Efek Fade-in */
-        body {
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
-            background-image: url('https://files.catbox.moe/tomnfh.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Tombol Musik di Pojok Kiri Atas */
-        .music-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            border: none;
-            background-color: red;
-            color: white;
-        }
-
-        /* Header */
-        .header-section {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0px 0px 10px gray;
-            content: url('https://files.catbox.moe/9fbaof.jpg');
-            animation: rgbBorder 3s infinite alternate;
-        }
-
-        @keyframes rgbBorder {
-            0% { border-color: red; }
-            25% { border-color: green; }
-            50% { border-color: blue; }
-            75% { border-color: yellow; }
-            100% { border-color: purple; }
-        }
-
-        .header-text {
-            font-size: 36px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Text Jepang */
-        .japanese-text {
-            text-align: center;
-            font-size: 20px;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeInOut 6s infinite;
-        }
-
-        @keyframes fadeInOut {
-            0%, 50%, 100% { opacity: 0; }
-            25%, 75% { opacity: 1; }
-        }
-
-        /* Keterangan Minat */
-        .interest-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .interest {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 6px 14px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .interest:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* Tombol */
-        .button {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-            display: block;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        .website-footer {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            margin-top: 30px;
-        }
-    </style>
+  <title>Lynxxx DB Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { margin-bottom: 10px; }
+    button { padding: 8px 12px; margin: 5px; }
+    input { padding: 7px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
+    th, td { border: 1px solid #aaa; padding: 8px; text-align: left; }
+    #modal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;
+      z-index: 999;
+    }
+    #modalContent {
+      background: #fff; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Tombol Musik -->
-    <button id="music-btn" class="music-button" onclick="toggleMusic()">Music</button>
+  <h2>📦 Lynxxx Botz | Manajemen Database</h2>
 
-    <!-- Musik -->
-    <audio id="bg-music" loop>
-        <source src="https://files.catbox.moe/twbl7m.webm" type="audio/webm">
-    </audio>
+  <button onclick="openModal('add')">➕ Tambah / Edit</button>
+  <button onclick="openModal('delete')">🗑️ Hapus</button>
 
-    <!-- Header -->
-    <div class="header-section">
-        <img src="https://files.catbox.moe/9fbaof.jpg" class="profile-img" alt="Profile">
-        <h1 class="header-text">Dhikzx</h1>
+  <h3>📄 List Database</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nomor</th>
+        <th>Username</th>
+        <th>PIN</th>
+      </tr>
+    </thead>
+    <tbody id="dbList">
+      <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+  </table>
 
-        <!-- Text Jepang -->
-        <div class="japanese-text">こんにちは、私の名前はDhikzxです</div>
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modalContent">
+      <h3 id="modalTitle">Form</h3>
 
-        <!-- Keterangan Minat -->
-        <div class="interest-section">
-            <span class="interest"><i class="fas fa-film"></i> Anime</span>
-            <span class="interest"><i class="fas fa-book"></i> Manga</span>
-            <span class="interest"><i class="fas fa-code"></i> Coding</span>
-            <span class="interest"><i class="fas fa-gamepad"></i> Gaming</span>
-            <span class="interest"><i class="fas fa-music"></i> Music</span>
-            <span class="interest"><i class="fas fa-edit"></i> Editing</span>
-        </div>
+      <div id="formAdd" style="display:none;">
+        <input id="addPhone" placeholder="628xxxxxxxxxx">
+        <input id="addUser" placeholder="Username">
+        <input id="addPin" placeholder="PIN">
+        <button onclick="addOrEdit()">Simpan</button>
+      </div>
+
+      <div id="formDelete" style="display:none;">
+        <input id="delPhone" placeholder="628xxxxxxxxxx">
+        <button onclick="hapus()">Hapus</button>
+      </div>
+
+      <br>
+      <button onclick="closeModal()">Tutup</button>
     </div>
+  </div>
 
-    <!-- Tombol Pertama -->
-    <div id="initialButtons">
-        <button class="button" onclick="showProducts()">Produk</button>
-        <button class="button" onclick="window.location.href='https://wa.me/6285810287828'">Contact Owner</button>
-        <button class="button" onclick="window.location.href='https://chat.whatsapp.com/DyFk35cEMXGGBdCTvOqcih'">Group Bot</button>
-    </div>
+  <script>
+    const API_URL = "https://api.github.com/repos/DimasMahardika24/DbUsers/contents/Db.json";
+    const TOKEN = "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";
+    let database = [];
 
-    <!-- Tombol Produk (Diperbaiki agar muncul) -->
-    <div id="produkButtons" style="display: none;">
-        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Sewa+Bot+Bang_'">Buy Sewa Bot</button>
-        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Panel+Bang_'">Buy Panel Bot</button>
-        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Jasa+Rename+Bang_'">Buy Jasa Rename</button>
-        <button class="button" onclick="window.location.href='https://wa.me/6285810287828?text=%60Assalamualaikum+Wr+Wb%60%0A_Saya+Ingin+Beli+Jasa+Recode+Bang_'">Buy Jasa Recode</button>
-        <button class="button" onclick="goBack()">Back</button>
-    </div>
-
-    <!-- Footer -->
-    <footer class="website-footer">
-        © 2025 - Dhikzx Not Useful
-    </footer>
-
-    <script>
-        function toggleMusic() {
-            var music = document.getElementById("bg-music");
-            var musicBtn = document.getElementById("music-btn");
-
-            if (music.paused) {
-                music.play();
-                musicBtn.style.backgroundColor = "green";
-            } else {
-                music.pause();
-                musicBtn.style.backgroundColor = "red";
-            }
+    async function fetchDb() {
+      const res = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+          Accept: "application/vnd.github.v3.raw"
         }
+      });
+      return await res.json();
+    }
 
-        function showProducts() {
-            document.getElementById('initialButtons').style.display = 'none';
-            document.getElementById('produkButtons').style.display = 'block';
-        }
+    async function getSha() {
+      const res = await fetch(API_URL, {
+        headers: { Authorization: `token ${TOKEN}` }
+      });
+      const data = await res.json();
+      return data.sha;
+    }
 
-        function goBack() {
-            document.getElementById('produkButtons').style.display = 'none';
-            document.getElementById('initialButtons').style.display = 'block';
-        }
-    </script>
+    async function pushDb(data, message) {
+      const sha = await getSha();
+      const encoded = btoa(JSON.stringify(data, null, 2));
+      await fetch(API_URL, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${TOKEN}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message,
+          committer: { name: "Lynxxx Botz", email: "lynxxx@example.com" },
+          content: encoded,
+          sha
+        })
+      });
+    }
 
+    async function loadDb() {
+      const data = await fetchDb();
+      database = data.users || [];
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("dbList");
+      if (database.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='3'>Tidak ada data.</td></tr>";
+        return;
+      }
+
+      tbody.innerHTML = database.map(u => `
+        <tr>
+          <td>${u.phone}</td>
+          <td>${u.username}</td>
+          <td>${u.pin}</td>
+        </tr>
+      `).join("");
+    }
+
+    async function addOrEdit() {
+      const phone = document.getElementById("addPhone").value.trim();
+      const username = document.getElementById("addUser").value.trim();
+      const pin = document.getElementById("addPin").value.trim();
+
+      if (!/^628\d{6,15}$/.test(phone)) return alert("❌ Nomor tidak valid!");
+      if (!username || !pin) return alert("❌ Lengkapi semua kolom!");
+
+      const existing = database.find(u => u.phone === phone);
+      if (existing) {
+        existing.username = username;
+        existing.pin = pin;
+        alert(`✏️ Data ${phone} diupdate.`);
+      } else {
+        database.push({ phone, username, pin });
+        alert(`✅ Data ${phone} ditambahkan.`);
+      }
+
+      await pushDb({ users: database }, `Add/Edit ${phone}`);
+      closeModal();
+      loadDb();
+    }
+
+    async function hapus() {
+      const phone = document.getElementById("delPhone").value.trim();
+      if (!/^628\d{6,15}$/.test(phone)) return alert("❌ Nomor tidak valid!");
+
+      const awal = database.length;
+      database = database.filter(u => u.phone !== phone);
+
+      if (awal === database.length) {
+        alert("❌ Nomor tidak ditemukan.");
+        return;
+      }
+
+      await pushDb({ users: database }, `Hapus ${phone}`);
+      alert(`🗑️ Nomor ${phone} berhasil dihapus.`);
+      closeModal();
+      loadDb();
+    }
+
+    function openModal(type) {
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('formAdd').style.display = 'none';
+      document.getElementById('formDelete').style.display = 'none';
+
+      if (type === 'add') {
+        document.getElementById('modalTitle').innerText = '➕ Tambah / Edit Data';
+        document.getElementById('formAdd').style.display = 'block';
+      } else {
+        document.getElementById('modalTitle').innerText = '🗑️ Hapus Data';
+        document.getElementById('formDelete').style.display = 'block';
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    loadDb();
+  </script>
 </body>
-</html>
+    </html>
