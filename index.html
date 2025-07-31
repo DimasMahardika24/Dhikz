@@ -1,191 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
+
 <head>
-  <title>Lynxxx DB Manager</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h2 { margin-bottom: 10px; }
-    button { padding: 8px 12px; margin: 5px; }
-    input { padding: 7px; margin: 5px 0; width: 100%; box-sizing: border-box; }
-    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
-    th, td { border: 1px solid #aaa; padding: 8px; text-align: left; }
-    #modal {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;
-      z-index: 999;
-    }
-    #modalContent {
-      background: #fff; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DhikzxCloud - Profil Dimas Mahardika</title>
+<meta name="description"
+    content="Halaman profil Dimas Mahardika, pengelola Lynxxx Botz dari Jakarta. Kenali sosok di balik bot dan komunitas digital ini.">
+<meta name="keywords"
+    content="Dimas Mahardika, DhikzxCloud, Lynxxx Botz, Bot WhatsApp, Developer, Jakarta, Otomatisasi, Komunitas Bot">
+<meta name="author" content="Dimas Mahardika">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-
-  <h2>📦 Lynxxx Botz | Manajemen Database</h2>
-
-  <button onclick="openModal('add')">➕ Tambah / Edit</button>
-  <button onclick="openModal('delete')">🗑️ Hapus</button>
-
-  <h3>📄 List Database</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Nomor</th>
-        <th>Username</th>
-        <th>PIN</th>
-      </tr>
-    </thead>
-    <tbody id="dbList">
-      <tr><td colspan="3">Loading...</td></tr>
-    </tbody>
-  </table>
-
-  <!-- Modal -->
-  <div id="modal">
-    <div id="modalContent">
-      <h3 id="modalTitle">Form</h3>
-
-      <div id="formAdd" style="display:none;">
-        <input id="addPhone" placeholder="628xxxxxxxxxx">
-        <input id="addUser" placeholder="Username">
-        <input id="addPin" placeholder="PIN">
-        <button onclick="addOrEdit()">Simpan</button>
-      </div>
-
-      <div id="formDelete" style="display:none;">
-        <input id="delPhone" placeholder="628xxxxxxxxxx">
-        <button onclick="hapus()">Hapus</button>
-      </div>
-
-      <br>
-      <button onclick="closeModal()">Tutup</button>
+    <div class="background-effects">
+        <canvas id="particles-js"></canvas>
+        <div class="quantum-waves"></div>
+        <div class="binary-rain" id="binaryRain"></div>
+        <div class="space-element tesseract">
+            <svg viewBox="0 0 100 100">
+                <path d="M50,0 L100,50 L50,100 L0,50 Z" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="1" />
+                <path d="M25,25 L75,25 L75,75 L25,75 Z" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="1" />
+                <line x1="25" y1="25" x2="50" y2="0" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+                <line x1="75" y1="25" x2="100" y2="50" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+                <line x1="75" y1="75" x2="50" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+                <line x1="25" y1="75" x2="0" y2="50" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
+            </svg>
+        </div>
+        <div class="space-element wireframe-sphere">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="0.5" />
+                <path d="M50,5 A45,45 0 0,1 50,95 A45,45 0 0,1 50,5" stroke="rgba(255,255,255,0.1)" fill="none"
+                    stroke-width="0.5" />
+                <path d="M50,5 A45,45 0 0,0 50,95 A45,45 0 0,0 50,5" stroke="rgba(255,255,255,0.1)" fill="none"
+                    stroke-width="0.5" />
+                <path d="M5,50 A45,45 0 0,1 95,50" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="0.5" />
+            </svg>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const API_URL = "https://api.github.com/repos/DimasMahardika24/DbUsers/contents/Db.json";
-    const TOKEN = "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";
-    let database = [];
+    <main class="container">
+        <section class="profile-card" data-aos="fade-up" data-aos-duration="1000">
+            <div class="profile-img-container" data-aos="zoom-in" data-aos-delay="200">
+                <img src="dikz.jpg" alt="Foto profil Muhammad Fauzi Alifatah, pengembang web dan kreator digital"
+                    class="profile-img">
+            </div>
+<h1 class="name" data-aos="fade-up" data-aos-delay="400">DIMAS MAHARDIKA</h1>
+<p class="tagline" data-aos="fade-up" data-aos-delay="500">lynxxx.my.id</p>
+<p class="bio" data-aos="fade-up" data-aos-delay="600">
+    Halo! Saya Dimas Mahardika, sosok di balik DhikzxCloud dan pengelola Lynxxx Botz. Saya berasal dari Jakarta dan aktif mengembangkan bot WhatsApp menggunakan JavaScript.<br><br>
+    Semuanya saya jalani bukan karena merasa jago, tapi karena niat, rasa ingin belajar, dan usaha untuk mencukupi kebutuhan lewat hal yang saya pahami. Buat saya, teknologi bukan cuma alat — tapi juga ruang untuk terus berkembang dan berbagi. Terima kasih sudah mampir, semoga yang saya buat bisa ada manfaatnya meskipun sederhana.
+</p>
 
-    async function fetchDb() {
-      const res = await fetch(API_URL, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-          Accept: "application/vnd.github.v3.raw"
-        }
-      });
-      return await res.json();
-    }
+            <div class="social-links" data-aos="fade-up" data-aos-delay="700">
+                <a href="https://www.youtube.com/@Fauzialifatah s" class="social-link" target="_blank"
+                    title="YouTube Channel" rel="noopener noreferrer"
+                    aria-label="Kunjungi profil YouTube Fauzi Alifatah"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/fauzialifatah_/" class="social-link" target="_blank"
+                    title="Instagram Profile" rel="noopener noreferrer"
+                    aria-label="Kunjungi profil Instagram Fauzi Alifatah"><i class="fab fa-instagram"></i></a>
+                <a href="https://whatsapp.com/channel/0029VawsCnQ9mrGkOuburC1z" class="social-link" target="_blank"
+                    title="WhatsApp Channel" rel="noopener noreferrer"
+                    aria-label="Bergabung dengan WhatsApp Channel Fauzi Alifatah"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://github.com/Alifatahfauzi" class="social-link" target="_blank" title="GitHub Profile"
+                    rel="noopener noreferrer" aria-label="Kunjungi profil GitHub Fauzi Alifatah"><i
+                        class="fab fa-github"></i></a>
+            </div>
+        </section>
 
-    async function getSha() {
-      const res = await fetch(API_URL, {
-        headers: { Authorization: `token ${TOKEN}` }
-      });
-      const data = await res.json();
-      return data.sha;
-    }
+        <section class="skills-section" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <h2 class="section-title">Keahlian Saya</h2>
+            <div class="skills-grid">
+                <div class="skill-item" data-skill="HTML" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item" data-skill="CSS" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-item" data-skill="JavaScript" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
 
-    async function pushDb(data, message) {
-      const sha = await getSha();
-      const encoded = btoa(JSON.stringify(data, null, 2));
-      await fetch(API_URL, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${TOKEN}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message,
-          committer: { name: "Lynxxx Botz", email: "lynxxx@example.com" },
-          content: encoded,
-          sha
-        })
-      });
-    }
+                <div class="skill-item" data-skill="Node.js" data-aos="zoom-in" data-aos-delay="700">
+                    <i class="fab fa-node-js"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-item" data-skill="MongoDB" data-aos="zoom-in" data-aos-delay="800">
+                    <i class="fas fa-database"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-item" data-skill="Git" data-aos="zoom-in" data-aos-delay="900">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git & GitHub</span>
+                </div>
+                <div class="skill-item" data-skill="UI/UX Design" data-aos="zoom-in" data-aos-delay="1000">
+                    <i class="fas fa-bezier-curve"></i>
+                    <span>UI/UX Design</span>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    async function loadDb() {
-      const data = await fetchDb();
-      database = data.users || [];
-      renderTable();
-    }
+    <footer class="footer">
+        <p>&copy; 2024 Muhammad Fauzi Alifatah. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>Dibuat dengan <i class="fas fa-heart"></i> untuk dunia digital.</p>
+    </footer>
 
-    function renderTable() {
-      const tbody = document.getElementById("dbList");
-      if (database.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='3'>Tidak ada data.</td></tr>";
-        return;
-      }
-
-      tbody.innerHTML = database.map(u => `
-        <tr>
-          <td>${u.phone}</td>
-          <td>${u.username}</td>
-          <td>${u.pin}</td>
-        </tr>
-      `).join("");
-    }
-
-    async function addOrEdit() {
-      const phone = document.getElementById("addPhone").value.trim();
-      const username = document.getElementById("addUser").value.trim();
-      const pin = document.getElementById("addPin").value.trim();
-
-      if (!/^628\d{6,15}$/.test(phone)) return alert("❌ Nomor tidak valid!");
-      if (!username || !pin) return alert("❌ Lengkapi semua kolom!");
-
-      const existing = database.find(u => u.phone === phone);
-      if (existing) {
-        existing.username = username;
-        existing.pin = pin;
-        alert(`✏️ Data ${phone} diupdate.`);
-      } else {
-        database.push({ phone, username, pin });
-        alert(`✅ Data ${phone} ditambahkan.`);
-      }
-
-      await pushDb({ users: database }, `Add/Edit ${phone}`);
-      closeModal();
-      loadDb();
-    }
-
-    async function hapus() {
-      const phone = document.getElementById("delPhone").value.trim();
-      if (!/^628\d{6,15}$/.test(phone)) return alert("❌ Nomor tidak valid!");
-
-      const awal = database.length;
-      database = database.filter(u => u.phone !== phone);
-
-      if (awal === database.length) {
-        alert("❌ Nomor tidak ditemukan.");
-        return;
-      }
-
-      await pushDb({ users: database }, `Hapus ${phone}`);
-      alert(`🗑️ Nomor ${phone} berhasil dihapus.`);
-      closeModal();
-      loadDb();
-    }
-
-    function openModal(type) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('formAdd').style.display = 'none';
-      document.getElementById('formDelete').style.display = 'none';
-
-      if (type === 'add') {
-        document.getElementById('modalTitle').innerText = '➕ Tambah / Edit Data';
-        document.getElementById('formAdd').style.display = 'block';
-      } else {
-        document.getElementById('modalTitle').innerText = '🗑️ Hapus Data';
-        document.getElementById('formDelete').style.display = 'block';
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    loadDb();
-  </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            mirror: false
+        });
+    </script>
+    <script src="main.js"></script>
+    <script src="particles.js"></script>
 </body>
-    </html>
+
+</html>
